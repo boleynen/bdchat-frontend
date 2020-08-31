@@ -71,7 +71,7 @@ let appendReceivedChat = (chat) => {
                             "data": chat
                         })
 
-                        appendSendChat(json);
+                        appendSendChat(chat);
 
                     // IF I RECEIVED THIS MESSAGE, GIVE THAT CLASS
                     }else{
