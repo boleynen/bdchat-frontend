@@ -10,6 +10,15 @@ let chatbox = document.querySelector(".chatbox__output");
 let username = localStorage.getItem('username')
 let token = localStorage.getItem('token')
 
+          // PRIMUS LIVE 
+          let primus = Primus.connect(base_url, {
+            reconnect: {
+            max: Infinity,
+            min: 500,
+            retries: 10
+            }
+        });
+
 primus.on('data', (data) => {
     if(data.action === "getChatReceived"){
         appendReceivedChat(data.data);
@@ -159,14 +168,7 @@ let appendChat = (json) => {
         })
     });
 
-          // PRIMUS LIVE 
-          let primus = Primus.connect(base_url, {
-            reconnect: {
-            max: Infinity,
-            min: 500,
-            retries: 10
-            }
-        });
+
     
 
     Promise.all([getChats, postChats]).then((values) => {
