@@ -110,10 +110,10 @@ let appendChat = () => {
 
                 primus.write({
                     "action": "chatmessage",
-                    "data": json
+                    "data": jsonData
                 })
 
-                appendChat(json);
+                appendChat(jsonData);
 
             }if(json.status === "error"){
                 console.log(json.message);
