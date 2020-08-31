@@ -168,7 +168,7 @@ let appendChat = (json) => {
         })
     });
 
-
+    chatbox.scrollTop = chatbox.scrollHeight;
     
 
     Promise.all([getChats, postChats]).then((values) => {
