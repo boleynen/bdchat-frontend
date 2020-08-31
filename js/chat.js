@@ -10,7 +10,15 @@ let chatbox = document.querySelector(".chatbox__output");
 let username = localStorage.getItem('username')
 let token = localStorage.getItem('token')
 
-
+primus.on('data', (data) => {
+    if(data.action === "getChatReceived"){
+        appendReceivedChat(data.data);
+    }else if(data.action === "getChatSend"){
+        appendSendChat(data.data);
+    }else if(data.action === "sendChat"){
+        appendChat(data.data);
+    }
+});
 
 // GET CHAT MESSAGES ------------------------------------------------------------------------
     
@@ -67,7 +75,7 @@ let appendReceivedChat = (chat) => {
                         input.focus();
 
                         primus.write({
-                            "action": "chatmessage",
+                            "action": "getChatSend",
                             "data": chat
                         })
 
@@ -77,7 +85,7 @@ let appendReceivedChat = (chat) => {
                     }else{
 
                         primus.write({
-                            "action": "chatmessage",
+                            "action": "getChatReceived",
                             "data": chat
                         })
 
@@ -135,7 +143,7 @@ let appendChat = (json) => {
                 input.focus();
 
                 primus.write({
-                    "action": "chatmessage",
+                    "action": "sendChat",
                     "data": json
                 })
 
