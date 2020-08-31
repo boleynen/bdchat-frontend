@@ -1,4 +1,3 @@
-
 const base_url = "https://bd-chat.herokuapp.com";
 
 let sendMsgBtn = document.querySelector("#send-message");
@@ -10,6 +9,7 @@ let chatbox = document.querySelector(".chatbox__output");
 
 let username = localStorage.getItem('username')
 let token = localStorage.getItem('token')
+
 
 
 // GET CHAT MESSAGES ------------------------------------------------------------------------
@@ -71,8 +71,22 @@ let token = localStorage.getItem('token')
             console.log(err);
     });
 
+
 // POST CHAT MESSAGES ------------------------------------------------------------------------
-    // FETCH IF CLICKED ON BUTTON
+
+let appendChat = () => {
+    let chatMsg = ` <li class="chatbox__output-send message">
+                        <div>
+                            <p class="user">${json.data.chat.user}</p>
+                            <p class="textmessage bold">${json.data.chat.message}</p>
+                        </div>
+                    </li>`;   
+    chatbox.insertAdjacentHTML("beforeend", chatMsg);
+
+}
+ 
+
+// FETCH IF CLICKED ON BUTTON
     const postChats = 
     sendMsgBtn.addEventListener("click", function(e){
         e.preventDefault();
@@ -88,15 +102,19 @@ let token = localStorage.getItem('token')
         }).then(result =>{
             return result.json();
         }).then(json =>{
-            // INSERT INTO HTML
+
+            // INSERT INTO HTML WITH appendChat()
             if(json.status === "success"){
-                let chatMsg = `<li class="chatbox__output-send message">
-                                <div>
-                                    <p class="user">${json.data.chat.user}</p>
-                                    <p class="textmessage bold">${json.data.chat.message}</p>
-                                </div>
-                            </li>`;
-                chatbox.insertAdjacentHTML("beforeend", chatMsg);
+                input.value="";
+                input.focus();
+
+                PermissionStatus.write({
+                    "action": "chatmessage",
+                    "data": json
+                })
+
+                appendChat(json);
+
             }if(json.status === "error"){
                 console.log(json.message);
             }
