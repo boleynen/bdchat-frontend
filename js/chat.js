@@ -108,7 +108,7 @@ let appendChat = () => {
                 input.value="";
                 input.focus();
 
-                PermissionStatus.write({
+                primus.write({
                     "action": "chatmessage",
                     "data": json
                 })
