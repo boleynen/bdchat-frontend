@@ -58,7 +58,7 @@ window.onload = () => {
 }
 
       // PRIMUS LIVE 
-      let primus = Primus.connect('http://localhost:3000', {
+      let primus = Primus.connect(base_url, {
         reconnect: {
         max: Infinity,
         min: 500,
