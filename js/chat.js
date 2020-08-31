@@ -13,7 +13,30 @@ let token = localStorage.getItem('token')
 
 
 // GET CHAT MESSAGES ------------------------------------------------------------------------
-   // FETCH CURRENT USER TO GET CORRECT DATE
+    
+let appendSendChat = (chat) => {
+    let chatMsg = 
+    `<li class="chatbox__output-send message">
+        <div>
+            <p class="user">${chat.user}</p>
+            <p class="textmessage bold">${chat.message}</p>
+        </div>
+    </li>`
+    chatbox.insertAdjacentHTML("beforeend", chatMsg);
+}
+
+let appendReceivedChat = (chat) => {
+    let chatMsg = 
+    `<li class="chatbox__output-received message">
+        <div>
+            <p class="user">${chat.user}</p>
+            <p class="textmessage bold">${chat.message}</p>
+        </div>
+    </li>`
+    chatbox.insertAdjacentHTML("beforeend", chatMsg);
+}
+
+    // FETCH CURRENT USER TO GET CORRECT DATE
    const getChats = 
     fetch(base_url + "/account/user/"+token, {
         'headers': {
@@ -39,24 +62,27 @@ let token = localStorage.getItem('token')
                 chatMessage.forEach(chat => {
                     // IF I SEND THIS MESSAGE, GIVE THIS CLASS
                     if(chat.user === username){
-                        let chatMsg = 
-                        `<li class="chatbox__output-send message">
-                            <div>
-                                <p class="user">${chat.user}</p>
-                                <p class="textmessage bold">${chat.message}</p>
-                            </div>
-                        </li>`
-                        chatbox.insertAdjacentHTML("beforeend", chatMsg);
+
+                        input.value="";
+                        input.focus();
+
+                        primus.write({
+                            "action": "chatmessage",
+                            "data": chat
+                        })
+
+                        appendSendChat(json);
+
                     // IF I RECEIVED THIS MESSAGE, GIVE THAT CLASS
                     }else{
-                        let chatMsg = 
-                        `<li class="chatbox__output-received message">
-                            <div>
-                                <p class="user">${chat.user}</p>
-                                <p class="textmessage bold">${chat.message}</p>
-                            </div>
-                        </li>`
-                        chatbox.insertAdjacentHTML("beforeend", chatMsg);
+
+                        primus.write({
+                            "action": "chatmessage",
+                            "data": chat
+                        })
+
+                        appendReceivedChat(chat);
+
                     }
 
                 });
