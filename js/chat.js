@@ -90,6 +90,8 @@ let appendReceivedChat = (chat) => {
 
                         appendSendChat(chat);
 
+                        chatbox.scrollTop = chatbox.scrollHeight;
+
                     // IF I RECEIVED THIS MESSAGE, GIVE THAT CLASS
                     }else{
 
@@ -99,6 +101,8 @@ let appendReceivedChat = (chat) => {
                         })
 
                         appendReceivedChat(chat);
+
+                        chatbox.scrollTop = chatbox.scrollHeight;
 
                     }
 
@@ -158,6 +162,8 @@ let appendChat = (json) => {
 
                 appendChat(json);
 
+                chatbox.scrollTop = chatbox.scrollHeight;
+
             }if(json.status === "error"){
                 console.log(json.message);
             }
@@ -168,7 +174,7 @@ let appendChat = (json) => {
         })
     });
 
-    chatbox.scrollTop = chatbox.scrollHeight - chatbox.clientHeight;
+    
     
 
     Promise.all([getChats, postChats]).then((values) => {
