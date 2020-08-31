@@ -74,7 +74,7 @@ let token = localStorage.getItem('token')
 
 // POST CHAT MESSAGES ------------------------------------------------------------------------
 
-let appendChat = () => {
+let appendChat = (json) => {
     let chatMsg = ` <li class="chatbox__output-send message">
                         <div>
                             <p class="user">${json.data.chat.user}</p>
@@ -110,10 +110,10 @@ let appendChat = () => {
 
                 primus.write({
                     "action": "chatmessage",
-                    "data": jsonData
+                    "data": json
                 })
 
-                appendChat(jsonData);
+                appendChat(json);
 
             }if(json.status === "error"){
                 console.log(json.message);
