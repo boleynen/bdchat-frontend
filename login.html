@@ -13,35 +13,33 @@
 </head>
 
 <body>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&autoLogAppEvents=1&version=v8.0&appId=892509187904737" nonce="fwytWJO5"></script>
-
     <script>
-    // function checkLoginState() {
-    // FB.getLoginStatus(function(response) {
-    //     statusChangeCallback(response);
-    // });
-    // }
 
-    // window.fbAsyncInit = function() {
-    //   FB.init({
-    //     appId      : '{892509187904737}',
-    //     cookie     : true,
-    //     xfbml      : true,
-    //     version    : '{api-version}'
-    //   });
+    function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+    });
+    }
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '892509187904737',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v8.0'
+      });
         
-    //   FB.AppEvents.logPageView();   
+      FB.AppEvents.logPageView();   
         
-    // };
+    };
   
-    // (function(d, s, id){
-    //    var js, fjs = d.getElementsByTagName(s)[0];
-    //    if (d.getElementById(id)) {return;}
-    //    js = d.createElement(s); js.id = id;
-    //    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    //    fjs.parentNode.insertBefore(js, fjs);
-    //  }(document, 'script', 'facebook-jssdk'));
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
     </script>
 
     <section class="input-group">
@@ -72,10 +70,10 @@
                 <button class="button" id="btn-login">Log in</button>
                 <div class="footer-links">
                     <a href="signup.html" id="btn-login">Sign up here</a>
-                    <!-- <fb:login-button 
+                    <fb:login-button 
                     scope="public_profile,email"
                     onlogin="checkLoginState();">
-                    </fb:login-button> -->
+                    </fb:login-button>
                 </div>
                 <!-- <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="true" data-width=""></div> -->
             </footer>
