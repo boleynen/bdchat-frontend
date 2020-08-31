@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="public/styles/style.css">
+    <link rel="shortcut icon" href="#">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@800&family=Roboto&display=swap');
+        </style>
+</head>
+<body>
+
+    <section class="input-group">
+        <figure class="input-group__figure">
+            <img src="public/images/logo.png" alt="login img" class="input-group__image" />
+            <p>BD-CHAT</p>
+        </figure>
+        <header class="input-group__header">
+            <h1 class="input-group__title">Signup</h1>
+        </header>
+
+        <div class="alert hidden">some alert text
+        </div>
+
+        <form action="" class="input-group__form">
+            <div class="input-group__content">
+
+                <label for="username-input" class="form__label">Username</label>
+                <input id="username-input" class="form__input input-signup-user" type="username" />
+
+                <label for="password-input" class="form__label">Password</label>
+                <input id="password-input" class="form__input input-signup-pass" type="password" />
+
+                <label for="date-input" class="form__label">Date of birth</label>
+                <input id="date-input" class="form__input" type="date" />
+
+            </div>
+
+            <footer class="input-group__footer">
+                <button class="button" id="btn-signup">Sign up</button>
+                <div class="footer-links">
+                    <a href="login.html">Log in here</a>
+                </div>
+            </footer>
+
+
+        </form>
+    </section>
+
+    <script src="js/signup.js"></script>
+    
+</body>
+</html>
