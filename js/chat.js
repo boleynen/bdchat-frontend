@@ -125,6 +125,16 @@ let appendChat = () => {
         })
     });
 
+          // PRIMUS LIVE 
+          let primus = Primus.connect(base_url, {
+            reconnect: {
+            max: Infinity,
+            min: 500,
+            retries: 10
+            }
+        });
+    
+
     Promise.all([getChats, postChats]).then((values) => {
         // console.log(values)
     })
