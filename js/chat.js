@@ -11,13 +11,13 @@ let username = localStorage.getItem('username')
 let token = localStorage.getItem('token')
 
           // PRIMUS LIVE 
-          let primus = Primus.connect(base_url, {
-            reconnect: {
-            max: Infinity,
-            min: 500,
-            retries: 10
-            }
-        });
+let primus = Primus.connect(base_url, {
+    reconnect: {
+        max: Infinity,
+        min: 500,
+        retries: 10
+    }
+});
 
 primus.on('data', (data) => {
     if(data.action === "getChatReceived"){
